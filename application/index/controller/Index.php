@@ -8,7 +8,15 @@ class Index extends Common
     {
         $res=db('categories')->select();
 
-        return $this->return_msg(200,$res,'正确');
+        return $this->return_msg(200,'返回成功',$res);
+       
+    }
+
+    public function bookslist()
+    {
+    	 $res=db('books')->select();
+
+        return $this->return_msg(200,'返回成功',$res);
     }
 
   

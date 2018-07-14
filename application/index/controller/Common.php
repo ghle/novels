@@ -18,6 +18,7 @@ class Common extends Controller
                 'index'=>array(
 
                 ),
+                'bookslist'=>array(),
     		)
     );
 	 protected function _initialize()
