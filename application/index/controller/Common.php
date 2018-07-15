@@ -15,10 +15,18 @@ class Common extends Controller
     protected $rules=array(
 
     		'Index'=>array(
-                'index'=>array(
+                'index'=>array(),
 
+                'bookslist'=>array(
+                      'bpid'=>'require',
                 ),
-                'bookslist'=>array(),
+
+                'booksdetail'=>array(
+                     'id'=>'require',
+                ),
+                'articlesdetail'=>array(),
+                
+                'indexrecommend'=>array()
     		)
     );
 	 protected function _initialize()

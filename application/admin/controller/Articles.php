@@ -33,7 +33,7 @@ class Articles extends Base
             $selectResult = $article->getArticlesByWhere($where, $offset, $limit);
             
             foreach($selectResult as $key=>$vo){
-                $selectResult[$key]['thumbnail'] = '<img src="' . $vo['thumbnail'] . '" width="40px" height="40px">';
+                $selectResult[$key]['thumbnail'] = '<img src="' . $vo['thumbnail'] . '" width="80px" height="100px">';
                 $selectResult[$key]['operate'] = showOperate($this->makeButton($vo['id']));
             }
 
@@ -49,17 +49,22 @@ class Articles extends Base
     // 添加文章
     public function articleAdd()
     {
+        $bookscategory=db('books')->select();
+
         if(request()->isPost()){
             $param = input('post.');
 
             unset($param['file']);
             $param['add_time'] = date('Y-m-d H:i:s');
-
+           
             $article = new ArticleModel();
+
             $flag = $article->addArticle($param);
 
             return json(msg($flag['code'], $flag['data'], $flag['msg']));
         }
+
+        $this->assign('bookscategory',$bookscategory);
 
         return $this->fetch();
     }
@@ -101,7 +106,7 @@ class Articles extends Base
             // 移动到框架应用根目录/public/uploads/ 目录下
             $info = $file->move(ROOT_PATH . 'public' . DS . 'upload');
             if($info){
-                $src =  '/Yw/public/upload' . '/' . date('Ymd') . '/' . $info->getFilename();
+                $src =  '/novels/public/upload' . '/' . date('Ymd') . '/' . $info->getFilename();
                 return json(msg(0, ['src' => $src], ''));
             }else{
                 // 上传失败获取错误信息

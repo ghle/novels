@@ -1,10 +1,10 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"D:\phpStudy\WWW\novels\public/../application/admin\view\books\booksadd.html";i:1531580430;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"D:\phpStudy\WWW\novels\public/../application/admin\view\articles\articleedit.html";i:1531547927;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>添加导航</title>
+    <title>编辑文章</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -19,54 +19,32 @@
         <div class="col-sm-10">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>添加导航</h5>
+                    <h5>编辑文章</h5>
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal m-t" id="commentForm" method="post" action="<?php echo url('books/booksadd'); ?>">
-
-                        
-
+                    <form class="form-horizontal m-t" id="commentForm" method="post" action="<?php echo url('articles/articleedit'); ?>">
+                        <input type="hidden" name="id" value="<?php echo $article['id']; ?>"/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">分类：</label>
-                            <div class="input-group col-sm-7">  
-                                
-                                <select name="bpid" class="form-control" style="width: 200px;">
-                                    <option value="0">请选择分类</option>
-                                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): if( count($list)==0 ) : echo "" ;else: foreach($list as $key=>$vo): ?>
-                                  <option value="<?php echo $vo['cid']; ?>"> <?php echo $vo['catenames']; ?></option>
-                                    <?php endforeach; endif; else: echo "" ;endif; ?>
-                                </select>
-                           
+                            <label class="col-sm-3 control-label">文章标题：</label>
+                            <div class="input-group col-sm-7">
+                                <input id="title" type="text" class="form-control" name="title" required="" aria-required="true" value="<?php echo $article['title']; ?>">
                             </div>
                         </div>
-
-
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">图书名称：</label>
+                            <label class="col-sm-3 control-label">文章描述：</label>
                             <div class="input-group col-sm-7">
-                                <input id="bname" type="text" class="form-control" name="bname" required="" aria-required="true" value="">
+                                <textarea id="description" class="form-control" name="description" required="" aria-required="true"><?php echo $article['description']; ?></textarea>
                             </div>
                         </div>
-                        
-
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">作者：</label>
+                            <label class="col-sm-3 control-label">关键词：</label>
                             <div class="input-group col-sm-7">
-                                <input id="bauthor" type="text" class="form-control" name="bauthor" required="" aria-required="true" value="">
+                                <input id="keywords" class="form-control" name="keywords" value="<?php echo $article['keywords']; ?>">
                             </div>
                         </div>
-
-
-                         <div class="form-group">
-                            <label class="col-sm-3 control-label">图书描述/简介：</label>
-                            <div class="input-group col-sm-7">
-                                <textarea id="bintroduction" class="form-control" name="bintroduction" required="" aria-required="true"></textarea>
-                            </div>
-                        </div>
-
-                          <div class="form-group">
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">缩略图：</label>
-                            <input name="bicon" id="bicon" type="hidden"/>
+                            <input name="thumbnail" id="thumbnail" type="hidden" value="<?php echo $article['thumbnail']; ?>"/>
                             <div class="form-inline">
                                 <div class="input-group col-sm-2">
                                     <button type="button" class="layui-btn" id="test1">
@@ -74,12 +52,21 @@
                                     </button>
                                 </div>
                                 <div class="input-group col-sm-3">
-                                    <div id="sm"></div>
+                                    <div id="sm">
+                                        <img src="<?php echo $article['thumbnail']; ?>" width="40px" height="40px"/>
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文章内容：</label>
+                            <div class="input-group col-sm-7">
+                                <script id="container" name="content" type="text/plain">
+                                    <?php echo $article['content']; ?>
+                                </script>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-8">
                                 <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
@@ -113,7 +100,6 @@
 
     function showSuccess(res){
 
-        console.log(res);
         layer.ready(function(){
             layer.close(index);
             if(1 == res.code){
@@ -151,11 +137,11 @@
             //执行实例
             var uploadInst = upload.render({
                 elem: '#test1' //绑定元素
-                ,url: "<?php echo url('books/uploadImg'); ?>" //上传接口
+                ,url: "<?php echo url('articles/uploadImg'); ?>" //上传接口
                 ,done: function(res){
                     //上传完毕回调
-                    $("#bicon").val(res.data.src);
-                    $("#sm").html('<img src="' + res.data.src + '" style="width:60px;height: 100px;"/>');
+                    $("#thumbnail").val(res.data.src);
+                    $("#sm").html('<img src="' + res.data.src + '" style="width:40px;height: 40px;"/>');
                 }
                 ,error: function(){
                     //请求异常回调
@@ -163,7 +149,7 @@
             });
         });
 
-        // var editor = UE.getEditor('container');
+        var editor = UE.getEditor('container');
     });
 
     // 表单验证

@@ -38,7 +38,7 @@ class Books extends Base
                          }
                     
                      $selectResult[$key]['bintroduction']= $this->subtext($selectResult[$key]['bintroduction'],30);
-                	 $selectResult[$key]['bicon'] = '<img src="' . $vo['bicon'] . '" width="60px" height="100px">';
+                	 $selectResult[$key]['bicon'] = '<img src="' . $vo['bicon'] . '" width="80px" height="100px">';
                      $selectResult[$key]['operate'] = showOperate($this->makeButton($vo['bid'])); 
   
                 }

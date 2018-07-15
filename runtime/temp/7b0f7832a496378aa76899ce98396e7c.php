@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\novels\public/../application/admin\view\books\index.html";i:1531577764;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\novels\public/../application/admin\view\books\index.html";i:1531580432;}*/ ?>
 ﻿<!DOCTYPE html>
 <html>
 <head>
