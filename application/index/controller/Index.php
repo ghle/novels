@@ -63,6 +63,10 @@ class Index extends Common
         $return['contents']=$datas;
 
         return $this->return_msg(200,'返回成功',$return);
+      
+
+       
+  
     }
 
     /**
@@ -78,19 +82,72 @@ class Index extends Common
 
          $res=db('articles')->where('keywords',$param['keywords'])->find();
 
-         return $this->return_msg(200,'返回成功',$res);
+        if ($res) {
+
+            return $this->return_msg(200,'返回成功',$res);
+
+        }else{
+
+            return $this->return_msg(400,'返回数据为空','');
+        }
+
+       
+  
 
 
         
     }
-
+    /**
+     * @function [小说推荐]
+     * @Author   lucky
+     * @DateTime 2018-07-20
+     * @version  [version]
+     * @return   [type]        [description]
+     */
     public function indexrecommend()
     {
+
+          $data=db('books')->field('bname,bicon,bid')->select();
+          if ( $data) {
+               return $this->return_msg(200,'返回成功',$data);
+          }else{
+
+            return $this->return_msg(400,'返回数据为空','');
+         }
+
         
-          $data=db('books')->field('bname,bicon')->select();
+    }
 
-          return $this->return_msg(200,'返回成功',$data);
+    /**
+     * @function [搜索接口]
+     * @Author   lucky
+     * @DateTime 2018-07-20
+     * @version  [version]
+     * @return   [type]        [description]
+     */
+    public function search()
+    {
+        $param=$this->params;
 
+        if(empty($param['bname'])){
+            return $this->return_msg(400,'返回数据为空','');die;
+        }
+       
+        $map['bname'] = ['like',"%".$param["bname"]."%"];
+
+        $res=db('books')->where($map)->select();
+
+        if ($res) {
+
+            return $this->return_msg(200,'返回成功',$res);
+
+        }else{
+
+            return $this->return_msg(400,'返回数据为空','');
+        }
+
+       
+  
     }
 
   

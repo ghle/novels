@@ -26,7 +26,11 @@ class Common extends Controller
                 ),
                 'articlesdetail'=>array(),
                 
-                'indexrecommend'=>array()
+                'indexrecommend'=>array(),
+                
+                'search'   =>array(
+                    'bname'=>'require'
+                )
     		)
     );
 	 protected function _initialize()
