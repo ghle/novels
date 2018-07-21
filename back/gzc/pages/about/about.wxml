@@ -1,0 +1,8 @@
+<view class="main">
+  <view class='h3'>关于我</view>
+  <view class='row'>版本 v1.0.0</view>
+  <view class='row'>简介：</view>
+ <view class='row'>关关小说阅读，提供最新最热的小说阅读小程序</view>
+ <view class='row'> 所用的技术有tp5、html5、bootstrap、Ajax以及微信开发等，为您提供最便利的小说阅读工具</view>
+</view>
+ 

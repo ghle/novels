@@ -1,0 +1,18 @@
+
+小说阅读 小程序
+
+1、数据库
+
+访问方式
+navicat for mysql 
+
+ IP地址或者主机名 39.106.134.4
+用户名：novels
+密码：asdf123456jkl;
+
+2、后台管理
+用户名：admin
+密码：admin
+
+访问方式
+http://39.106.134.4/novels/public/index.php/admin/login/index.html

@@ -1,0 +1,8 @@
+<view class="section">
+  <form bindsubmit="formSubmit">
+    <label>标题</label>
+    <input name="feedtitle" style='border:1px solid #eee' placeholder="一句话描述您的问题"></input>
+    <textarea placeholder="请输入您的宝贵意见或建议"   maxlength='200' name="feedcontent"/>
+    <button type='warn' form-type="submit"> 提交 </button>
+  </form>
+</view>

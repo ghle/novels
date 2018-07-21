@@ -1,0 +1,44 @@
+
+<view class="custom">
+         <view class="col4 custom-box" bindtap="toList" data-Cat="Point">
+             <image src="../../img/books.jpg"  />
+             <text>重点精选</text>
+         </view>
+         <view class="col4 custom-box" bindtap="toList" data-Cat="Boys">
+              <image src="../../img/boy.jpg"  />
+             <text>男频推荐</text>
+        </view>
+        <view class="col4 custom-box" bindtap="toList" data-Cat="Girls">
+            <image src="../../img/girl.jpg" />
+            <text>女频推荐</text>
+         </view>
+        <view class="col4 custom-box" bindtap="toList" data-Cat="New">
+            <image src="../../img/ad.jpg" />
+            <text>最新出版</text>
+        </view>
+     </view>
+  <view class="line">   
+     <icon class='iconfont icon-star' style='padding-bottom:6px;'></icon>
+     <text>推荐</text>
+  </view>
+<view class="tag">
+  <block wx:for="{{indexrecommend}}" wx:key>
+  <view style='font-size:12px;padding:5px;text-align:center;border-radius: 15px;' bindtap='clickDetail' id="{{item.bid}}">
+    <view>
+        <image src='http://39.106.134.4{{item.bicon}}' style='width:90px;height:120px;'> </image>
+    </view>
+     <text >{{item.bname}}</text>
+  </view>
+  </block>
+
+  </view>  
+     <view class="line">   
+        <icon class='iconfont icon-category'></icon>
+        <text>频道</text>
+     </view>
+     <view class="tag">
+          <view wx:for="{{list}}" wx:key class="col3 mg10" bindtap="toList" data-Cat="{{item.cid}}">
+            {{item.catenames}}        
+           </view>
+     </view>
+     

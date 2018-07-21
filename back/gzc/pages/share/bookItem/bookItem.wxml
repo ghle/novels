@@ -1,0 +1,11 @@
+  <template name="bookItem">
+      <view class='bookItem'>
+        <image class='bookIcon' src="http://39.106.134.4/{{bicon}}" ></image>
+        <view class='bookDesc'>
+          <text style='font-size:15px;'>{{bname}}</text>
+          <text>{{bauthor}}{{Category}}</text>
+          <text class="brief">{{bintroduction}}</text>
+        </view>
+      </view>
+      <view class="bookItem-line"></view>
+  </template>
