@@ -63,7 +63,7 @@ class Index extends Common
         $return['contents']=$datas;
 
         return $this->return_msg(200,'返回成功',$return);
-      
+
 
        
   
@@ -146,8 +146,31 @@ class Index extends Common
             return $this->return_msg(400,'返回数据为空','');
         }
 
-       
-  
+    }
+    /**
+     * @function [信息反馈]
+     * @Author   lucky
+     * @DateTime 2018-07-20
+     * @version  [version]
+     * @return   [type]        [description]
+     */
+    public function feedback()
+    {
+        $param=$this->params;
+
+        $param['feedtime']=date("Y-m-d H:i:s");
+
+    
+        $res=db('feedback')->insert($param);
+
+        if ($res) {
+
+            return $this->return_msg(200,'返回成功',$res);
+
+        }else{
+
+            return $this->return_msg(400,'返回数据为空','');
+        }
     }
 
   
